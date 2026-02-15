@@ -26,6 +26,9 @@ vtr::optional<RouteTree> TracebackCompat::traceback_to_route_tree(t_trace* head)
 
 /* Add the path indicated by the trace to parent */
 void TracebackCompat::traceback_to_route_tree_x(t_trace* trace, RouteTree& tree, RouteTreeNode* parent, RRSwitchId parent_switch) {
+    if (trace == nullptr)
+        return;
+
     auto& device_ctx = g_vpr_ctx.device();
     const auto& rr_graph = device_ctx.rr_graph;
     RRNodeId inode = RRNodeId(trace->index);
