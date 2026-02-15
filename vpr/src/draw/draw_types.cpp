@@ -64,6 +64,10 @@ ezgl::rectangle t_draw_pb_type_info::get_pb_bbox(const t_pb_graph_node& pb_gnode
 
 ezgl::rectangle& t_draw_pb_type_info::get_pb_bbox_ref(const t_pb_graph_node& pb_gnode) {
     const int pb_gnode_id = get_unique_pb_graph_node_id(&pb_gnode);
+    if (pb_gnode_id < 0 || pb_gnode_id >= (int)subblk_array.size()) {
+        static ezgl::rectangle empty_bbox;
+        return empty_bbox;
+    }
     return subblk_array.at(pb_gnode_id);
 }
 
